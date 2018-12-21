@@ -2,6 +2,9 @@ import urllib.request as req
 from bs4 import BeautifulSoup as soup
 import re
 
+epub_get = True
+pdf_get = False
+
 invar = 50
 
 my_url = "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/bd/bd1819a"
@@ -31,15 +34,14 @@ for row in tbody.find_all(pat):
     pdf_url = pdf[0]
 
     #print("number: " + number +"\nname: " + name + "\ndate: " + date + "\nepub: " + epub_url + "\npdf:  " + pdf_url)
-    """
-    if False:
+    if pdf_get and int(number) > invar:
         try:
-            epub_name = str(number) + " "+ name  + " " + "(" + date + ")" + ".epub"
-            req.urlretrieve(epub_url, epub_name)
+            pdf_name = str(number) + " "+ name  + " " + "(" + date + ")" + ".pdf"
+            req.urlretrieve(pdf_url, pdf_name)
         except:
             print("error")
-    """
-    if True and int(number) > invar:
+
+    if epub_get and int(number) > invar:
         try:
             epub_name = number + " "+ name  + " " + date + ".epub"
             req.urlretrieve(epub_url, epub_name)
