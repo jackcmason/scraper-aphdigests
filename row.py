@@ -1,11 +1,17 @@
+#!/usr/bin/python3
 import urllib.request as req
 from bs4 import BeautifulSoup as soup
 import re
+import sys
 
-epub_get = True
-pdf_get = False
+if len(sys.argv) != 4:
+    print("Usage: command [epub] [pdf] [vol]")
+    sys.exit()
 
-invar = 50
+epub_get = True if sys.argv[1] == "true" else False
+pdf_get = True if sys.argv[2] == "true" else False
+
+invar = int(sys.argv[3])
 
 my_url = "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/bd/bd1819a"
 base_url = "https://www.aph.gov.au"
@@ -47,4 +53,3 @@ for row in tbody.find_all(pat):
             req.urlretrieve(epub_url, epub_name)
         except:
             print("error")
-
