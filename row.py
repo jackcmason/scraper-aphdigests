@@ -40,14 +40,14 @@ for row in tbody.find_all(pat):
     pdf_url = pdf[0]
 
     #print("number: " + number +"\nname: " + name + "\ndate: " + date + "\nepub: " + epub_url + "\npdf:  " + pdf_url)
-    if pdf_get and int(number) > invar:
+    if pdf_get and int(number) >= invar:
         try:
             pdf_name = number + " " + name + " " + date + ".pdf"
             req.urlretrieve(pdf_url, pdf_name)
         except:
             print("error")
 
-    if epub_get and int(number) > invar:
+    if epub_get and int(number) >= invar:
         try:
             epub_name = number + " " + name + " " + date + ".epub"
             req.urlretrieve(epub_url, epub_name)
